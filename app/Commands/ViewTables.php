@@ -33,15 +33,17 @@ class ViewTables extends Command
     {
         //
 
-        $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+        // dd($_ENV);
+
+        $dotenv = Dotenv::createImmutable($_ENV['PWD']);
         $dotenv->load();
 
         Config::set('database.default', 'mysql');
         Config::set('database.connections.mysql.host', env('DB_HOST', '127.0.0.1'),);
         Config::set('database.connections.mysql.port', env('DB_PORT', '3306'),);
-        Config::set('database.connections.mysql.database', env('LOCAL_DB_NAME', 'mysql'));
-        Config::set('database.connections.mysql.username', env('LOCAL_DB_USER', 'root'));
-        Config::set('database.connections.mysql.password', env('LOCAL_DB_PWD', ''));
+        Config::set('database.connections.mysql.database', env('DB_DATABASE', env('LOCAL_DB_NAME', 'mysql')));
+        Config::set('database.connections.mysql.username', env('DB_USERNAME', env('LOCAL_DB_USER', 'root')));
+        Config::set('database.connections.mysql.password', env('DB_PASSWORD', env('LOCAL_DB_PWD', '')));
 
         DB::purge('mysql');
 
@@ -56,12 +58,13 @@ class ViewTables extends Command
             ORDER BY (data_length + index_length) DESC;
         ');
 
-        $total = collect($tables)->sum('Size');
-        collect($tables)->map(function ($table) use ($total) {
-            $table->Percentage = round($table->Size / $total * 100, 2);
-            return $table;
-        });
-
+        $total = collect($tables)
+            ->sum('Size');
+        collect($tables)
+            ->map(function ($table) use ($total) {
+                $table->Percentage = round($table->Size / $total * 100, 2);
+                return $table;
+            });
 
         render(
             view('tables', [

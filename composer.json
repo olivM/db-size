@@ -61,7 +61,7 @@
     ],
     "scripts": {
         "build": [
-            "./vendor/laravel-zero/framework/bin/box compile --working-dir=/Users/olivm/Workspace/_tmp/db-size --config=/Users/olivm/Workspace/_tmp/db-size/box.json --debug"
+            "./vendor/laravel-zero/framework/bin/box compile --working-dir=/Users/olivm/Workspace/_tmp/db-size --config=/Users/olivm/Workspace/_tmp/db-size/box.json --debug;cp /Users/olivm/Workspace/_tmp/db-size/db-size.phar /Users/olivm/.composer/vendor/bin/db-size"
         ]
     }
 }

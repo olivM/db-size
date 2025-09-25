@@ -14,8 +14,8 @@ return [
     |
     */
 
-    'default' => NunoMaduro\LaravelConsoleSummary\SummaryCommand::class,
-    // 'default' => App\Commands\ViewTables::class,
+    // 'default' => NunoMaduro\LaravelConsoleSummary\SummaryCommand::class,
+    'default' => App\Commands\ViewTables::class,
 
     /*
     |--------------------------------------------------------------------------
