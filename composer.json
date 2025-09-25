@@ -1,7 +1,13 @@
 {
     "name": "laravel-zero/laravel-zero",
     "description": "The Laravel Zero Framework.",
-    "keywords": ["framework", "laravel", "laravel zero", "console", "cli"],
+    "keywords": [
+        "framework",
+        "laravel",
+        "laravel zero",
+        "console",
+        "cli"
+    ],
     "homepage": "https://laravel-zero.com",
     "type": "project",
     "license": "MIT",
@@ -17,12 +23,16 @@
     ],
     "require": {
         "php": "^8.2",
-        "laravel-zero/framework": "^12.0"
+        "illuminate/database": "^12.17",
+        "illuminate/view": "^12.17",
+        "laravel-zero/framework": "^12.0",
+        "vlucas/phpdotenv": "^5.6"
     },
     "require-dev": {
+        "fakerphp/faker": "^1.23",
         "laravel/pint": "^1.22",
         "mockery/mockery": "^1.6.12",
-        "pestphp/pest": "^3.8.2"
+        "pestphp/pest": "^4.0"
     },
     "autoload": {
         "psr-4": {
@@ -46,5 +56,12 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
-    "bin": ["db-size"]
+    "bin": [
+        "db-size"
+    ],
+    "scripts": {
+        "build": [
+            "./vendor/laravel-zero/framework/bin/box compile --working-dir=/Users/olivm/Workspace/_tmp/db-size --config=/Users/olivm/Workspace/_tmp/db-size/box.json --debug"
+        ]
+    }
 }
